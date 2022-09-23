@@ -6,7 +6,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
+import com.example.boodschappenlijst.toast
 import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi
 import com.ramcosta.composedestinations.DestinationsNavHost
 import com.ramcosta.composedestinations.animations.rememberAnimatedNavHostEngine
@@ -64,6 +66,8 @@ private fun ShowLoginWhenLoggedOut(
     vm: MainViewModel,
     navController: NavHostController
 ) {
+    val ctx = LocalContext.current
+    toast(ctx, "ShowLoginWhenLoggedOut")
     val currentDestination by navController.appCurrentDestinationAsState()
     val isLoggedIn by vm.isLoggedInFlow.collectAsState()
 
