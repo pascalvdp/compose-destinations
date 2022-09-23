@@ -12,7 +12,7 @@ val LocalDependencyContainer = staticCompositionLocalOf<DependencyContainer> {
     error("No dependency container provided!")
 }
 
-class MainActivity : ComponentActivity() {
+class MainActivity : ComponentActivity() { //test
 
     private val dependencyContainer by lazy { DependencyContainer(this) }
 
