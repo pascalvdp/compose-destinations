@@ -11,6 +11,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import com.example.boodschappenlijst.toast
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
@@ -25,6 +27,8 @@ fun TaskListScreen(
     navigator: DestinationsNavigator,
     viewModel: TaskListViewModel = viewModel()
 ) {
+    val ctx = LocalContext.current
+    toast(ctx, "NavGraphs.root.startRoute = TaskListScreen")
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         floatingActionButton = {
