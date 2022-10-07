@@ -8,7 +8,7 @@ import kotlinx.coroutines.withContext
 
 class LoginStateRepository {
 
-    private val _isLoggedIn = MutableStateFlow(false)
+    private val _isLoggedIn = MutableStateFlow(false) //false
     val isLoggedIn = _isLoggedIn.asStateFlow()
 
     suspend fun login() = withContext(Dispatchers.IO) {

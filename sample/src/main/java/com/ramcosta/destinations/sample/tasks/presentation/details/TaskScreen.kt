@@ -30,7 +30,17 @@ fun TaskScreen(
     val task = viewModel.task.collectAsState().value
 
     if (task == null) {
-        CircularProgressIndicator()
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ){
+            CircularProgressIndicator()
+            //CircularProgressIndicator(
+                //strokeWidth = 2.dp,
+               // modifier = Modifier.fillMaxSize()
+            //)
+            //LinearProgressIndicator()
+        }
         return
     }
 
@@ -46,6 +56,7 @@ fun TaskScreen(
             }
         }
     ) {
+        val dd = it //dit is om it te gebruiken, moet niet
         Column(
             modifier = Modifier
                 .fillMaxSize()
