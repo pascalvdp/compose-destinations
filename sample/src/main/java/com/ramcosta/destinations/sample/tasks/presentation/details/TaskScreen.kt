@@ -12,7 +12,9 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import com.example.boodschappenlijst.toast
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.ramcosta.destinations.sample.core.viewmodel.viewModel
@@ -28,7 +30,10 @@ fun TaskScreen(
     viewModel: TaskDetailsViewModel = viewModel()
 ) {
     val task = viewModel.task.collectAsState().value
-
+    val ctx = LocalContext.current
+    if (task != null) {
+        toast(ctx, "taskvalue = ${task.title}" )
+    }
     if (task == null) {
         Box(
             modifier = Modifier.fillMaxSize(),
@@ -79,6 +84,12 @@ fun TaskScreen(
             Text("Steps:")
 
             val steps = viewModel.steps.collectAsState().value
+            Text("size = ${steps.size}")
+            if(steps == null){toast(ctx, "steps == null")}
+            if (steps != null) {
+
+                toast(ctx, "stepsvalue = ${steps}") //.get(0).title
+            }
             LazyColumn {
                 items(steps) { step ->
                     StepItem(
