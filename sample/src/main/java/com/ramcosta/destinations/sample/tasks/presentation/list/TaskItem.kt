@@ -31,7 +31,7 @@ fun TaskItem(
 
         Spacer(modifier = Modifier.width(8.dp))
 
-        Text(task.task.title)
+        Text(task.task.title + ", taskid = ${task.task.id}")
 
         if (task.steps.isNotEmpty()) {
             Spacer(modifier = Modifier.weight(1f))

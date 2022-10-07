@@ -21,6 +21,7 @@ import com.ramcosta.destinations.sample.core.viewmodel.viewModel
 import com.ramcosta.destinations.sample.destinations.AddStepDialogDestination
 import com.ramcosta.destinations.sample.destinations.StepScreenDestination
 import com.ramcosta.destinations.sample.tasks.domain.Step
+import com.ramcosta.destinations.sample.tasks.presentation.list.TaskUiItem
 
 @Destination(navArgsDelegate = TaskScreenNavArgs::class)
 @Composable
@@ -32,7 +33,7 @@ fun TaskScreen(
     val task = viewModel.task.collectAsState().value
     val ctx = LocalContext.current
     if (task != null) {
-        toast(ctx, "taskvalue = ${task.title}" )
+        //toast(ctx, "taskvalue = ${task.title}" )
     }
     if (task == null) {
         Box(
@@ -81,14 +82,15 @@ fun TaskScreen(
 
             Spacer(Modifier.height(16.dp))
 
-            Text("Steps:")
-
             val steps = viewModel.steps.collectAsState().value
-            Text("size = ${steps.size}")
-            if(steps == null){toast(ctx, "steps == null")}
-            if (steps != null) {
+            Text("Steps: (aantal steps = ${steps.size})")
+            //Text("aantal task.steps = ${TaskUiItem}") //nok
 
-                toast(ctx, "stepsvalue = ${steps}") //.get(0).title
+            LazyColumn {
+                items(steps) { step ->
+                    Text("title = ${step.title}" + ", taskId = ${step.taskId}")
+                    Text("id = ${step.id}")
+                }
             }
             LazyColumn {
                 items(steps) { step ->

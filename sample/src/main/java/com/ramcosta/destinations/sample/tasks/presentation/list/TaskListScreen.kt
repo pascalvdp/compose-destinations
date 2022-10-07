@@ -28,7 +28,7 @@ fun TaskListScreen(
     viewModel: TaskListViewModel = viewModel()
 ) {
     val ctx = LocalContext.current
-    toast(ctx, "NavGraphs.root.startRoute = TaskListScreen")
+    //toast(ctx, "NavGraphs.root.startRoute = TaskListScreen")
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         floatingActionButton = {
