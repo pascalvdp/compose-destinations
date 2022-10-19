@@ -11,6 +11,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
@@ -26,7 +27,7 @@ fun TitleConfirmDialog(
     onTitleChange: (String) -> Unit,
     onConfirm: () -> Unit,
 ) {
-    val focusRequester = remember { FocusRequester() }
+    val focusRequester = remember { FocusRequester() } //remember
     val inputService = LocalTextInputService.current
     Column(
         modifier = Modifier

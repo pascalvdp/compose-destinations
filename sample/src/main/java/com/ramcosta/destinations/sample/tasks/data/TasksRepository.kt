@@ -8,7 +8,7 @@ import kotlinx.coroutines.withContext
 class TasksRepository(
     private val stepsRepository: StepsRepository
 ) {
-
+    //deze lijst zou je beter inladen van firebase???
     private val _tasks: MutableStateFlow<MutableList<Task>> = MutableStateFlow<MutableList<Task>>(mutableListOf()).apply {
         value = mutableListOf(
             Task("Task #1", "Description #1", false, 1),
@@ -27,6 +27,8 @@ class TasksRepository(
         _tasks.update {
             it.toMutableList().apply {
                 add(task.copy(id = (it.lastOrNull()?.id ?: -1) + 1))
+                println("size =????????????? ${it.size}")
+                println("it.id???????????????????????????? = ${it.get(it.size-1).id}")
             }
         }
     }
