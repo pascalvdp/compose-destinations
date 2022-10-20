@@ -35,7 +35,6 @@ fun SampleApp() {
         navController = navController,
         startRoute = startRoute,
         topBar = { dest, backStackEntry ->
-            //toast(ctx, "topBar creeren ???")
             if (dest.shouldShowScaffoldElements) {
                 TopBar(dest, backStackEntry)
             }
@@ -46,7 +45,6 @@ fun SampleApp() {
             }
         }
     ) {
-        toast(ctx, "SampleScaffold")
         DestinationsNavHost(
             engine = engine,
             navController = navController,
@@ -54,12 +52,10 @@ fun SampleApp() {
             modifier = Modifier.padding(it),
             startRoute = startRoute
         )
-        toast(ctx, "go_to_ShowLoginWhenLoggedOut")
         // Has to be called after calling DestinationsNavHost because only
         // then does NavController have a graph associated that we need for
         // `appCurrentDestinationAsState` method
         ShowLoginWhenLoggedOut(vm, navController)
-        toast(ctx, "after_ShowLoginWhenLoggedOut")
     }
 }
 
@@ -71,12 +67,9 @@ private fun ShowLoginWhenLoggedOut(
     navController: NavHostController
 ) {
     val ctx = LocalContext.current
-    toast(ctx, "ShowLoginWhenLoggedOut")
     val currentDestination by navController.appCurrentDestinationAsState()
     val isLoggedIn by vm.isLoggedInFlow.collectAsState()
-    toast(ctx, "isLoggedIn = $isLoggedIn")
     if (!isLoggedIn && currentDestination != LoginScreenDestination) {
-        toast(ctx, "indien niet ingelogd en niet in de loginscreenDestination")
         // everytime destination changes or logged in state we check
         // if we have to show Login screen and navigate to it if so
         navController.navigate(LoginScreenDestination) {
